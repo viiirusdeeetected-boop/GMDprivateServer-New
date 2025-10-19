@@ -108,11 +108,11 @@ class Commands {
 				return false;
 			}
 			$query = $db->prepare("SELECT timestamp FROM dailyfeatures WHERE timestamp >= :tomorrow AND type = 1 ORDER BY timestamp DESC LIMIT 1");
-				$query->execute([':tomorrow' => strtotime("next monday")]);
+				$query->execute([':tomorrow' => strtotime("tomorrow 00:00:00")]);
 			if($query->rowCount() == 0){
-				$timestamp = strtotime("next monday");
+				$timestamp = strtotime("tomorrow 00:00:00");
 			}else{
-				$timestamp = $query->fetchColumn() + 604800;
+				$timestamp = $query->fetchColumn() + 86400;
 			}
 			$query = $db->prepare("INSERT INTO dailyfeatures (levelID, timestamp, type) VALUES (:levelID, :uploadDate, 1)");
 			$query->execute([':levelID' => $levelID, ':uploadDate' => $timestamp]);
