@@ -1,1 +1,1 @@
-https://geometrydashfiles.b-cdn.net
+https://sfx.fhgdps.com
